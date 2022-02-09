@@ -6,9 +6,9 @@
     Install-Module dbatools -Force -SkipPublisherCheck
     Import-Module dbatools
 
-    New-Folder c:\temp\dbaSecurityScan
+    New-Item c:\temp\dbaSecurityScan -ItemType folder
     git clone https://github.com/dataplat/dbasecurityscan.git c:\temp\dbaSecurityScan
     import-module c:\temp\dbaSecurityScan\dbasecurityscan.psd1
 
     $options = New-DbaDacOption -Type Dacpac -Action Publish
-    Publish-DbaDacPackage -SqlInstance sql2016 -Database DB1 -DacOption $options -Path .\all1.dacpac
+    Publish-DbaDacPackage -SqlInstance localhost -Database DB1 -DacOption $options -Path .\all1.dacpac
