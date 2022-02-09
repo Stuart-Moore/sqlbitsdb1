@@ -8,7 +8,7 @@
 
     New-Folder c:\temp\dbaSecurityScan
     git clone https://github.com/dataplat/dbasecurityscan.git c:\temp\dbaSecurityScan
-    import-module .c:\temp\dbaSecurityScan\dbasecurityscan.psd1
+    import-module c:\temp\dbaSecurityScan\dbasecurityscan.psd1
 
     $options = New-DbaDacOption -Type Dacpac -Action Publish
-    Publish-DbaDacPackage -SqlInstance sql2016 -Database DB1 -DacOption $options -Path .\db.dacpac
+    Publish-DbaDacPackage -SqlInstance sql2016 -Database DB1 -DacOption $options -Path .\all1.dacpac
