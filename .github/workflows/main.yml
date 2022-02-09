@@ -45,14 +45,14 @@ jobs:
       # Runs a set of commands using the runners shell
     - name: Run a multi-line script
       run : |
-        install-module dbatools
-        import-module dbatools
+        Install-Module Pester -Force -SkipPublisherCheck -MaximumVersion 4.9.0
+        Install-Module dbatools -Force -SkipPublisherCheck
         mkdir c:\github
         cd c:\github
         git clone https://github.com/dataplat/dbasecurityscan.git
         import-module c:\github\dbaSecurityScan\dbaSecurityScan.psm1
         $options = New-DbaDacOption -Type Dacpac -Action Publish
         Publish-DbaDacPackage -SqlInstance localhost -Database DB1 -DacOption $options -Path $ENV:GITHUB_WORKSPACE\all1.dacpac
-
+        
       
         
