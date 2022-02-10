@@ -19,6 +19,9 @@
     $script:appvSqlCredential = New-Object System.Management.Automation.PSCredential ('sa', $script:appvPassword)
     Write-Host "Install DacPac"
     Write-Host "Where - $($ENV:GITHUB_WORKSPACE)"
+    Write-host "full path $($ENV:GITHUB_WORKSPACE)\all1.dacpac"
+    $tf = Test-path "$($ENV:GITHUB_WORKSPACE)\all1.dacpac"
+    write-Host "path test - $tf"
     Set-Location $ENV:GITHUB_WORKSPACE
     Get-ChildItem
     $options = New-DbaDacOption -Type Dacpac -Action Publish
