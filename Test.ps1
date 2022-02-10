@@ -22,4 +22,4 @@
     Set-Location $ENV:GITHUB_WORKSPACE
     Get-ChildItem
     $options = New-DbaDacOption -Type Dacpac -Action Publish
-    Publish-DbaDacPackage -SqlInstance localhost -sqlcredential $script:appvSqlCredential -Database DB1 -DacOption $options -Path all1.dacpac
+    Publish-DbaDacPackage -SqlInstance localhost -sqlcredential $script:appvSqlCredential -Database DB1 -DacOption $options -Path "$($ENV:GITHUB_WORKSPACE)\all1.dacpac"
