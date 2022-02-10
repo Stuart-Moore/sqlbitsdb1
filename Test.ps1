@@ -8,11 +8,11 @@
     Install-Module dbatools -Force -SkipPublisherCheck
     Import-Module dbatools
 
-    New-Item c:\temp\dbaSecurityScan -ItemType Directory
-    git clone https://github.com/dataplat/dbasecurityscan.git c:\temp\dbaSecurityScan
+    New-Item .\dbaSecurityScan -ItemType Directory
+    git clone https://github.com/dataplat/dbasecurityscan.git .\dbaSecurityScan
 
     Write-Host "Install dss"
-    import-module c:\temp\dbaSecurityScan\dbasecurityscan.psd1
+    import-module .\dbaSecurityScan\dbasecurityscan.psd1
 
     Write-Host "Install DacPac"
     Set-Location $ENV:GITHUB_WORKSPACE
