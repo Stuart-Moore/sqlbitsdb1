@@ -18,5 +18,6 @@
     Write-Host "Install DacPac"
     Write-Host "Where - $($ENV:GITHUB_WORKSPACE)"
     Set-Location $ENV:GITHUB_WORKSPACE
+    Get-ChildItem
     $options = New-DbaDacOption -Type Dacpac -Action Publish
     Publish-DbaDacPackage -SqlInstance localhost -Database DB1 -DacOption $options -Path .\all1.dacpac
