@@ -16,7 +16,7 @@
     import-module .\dbaSecurityScan.psd1
 
     $script:appvPassword = ConvertTo-SecureString 'P@ssw0rdl!ng' -AsPlainText -Force
-    $script:appvSqlCredential = New-Object System.Management.Automation.PSCredential ('sa', $appvPassword)
+    $script:appvSqlCredential = New-Object System.Management.Automation.PSCredential ('sa', $script:appvPassword)
     Write-Host "Install DacPac"
     Write-Host "Where - $($ENV:GITHUB_WORKSPACE)"
     Set-Location $ENV:GITHUB_WORKSPACE
