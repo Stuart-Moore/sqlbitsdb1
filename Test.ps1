@@ -24,5 +24,4 @@
     write-Host "path test - $tf"
     Set-Location $ENV:GITHUB_WORKSPACE
     Get-ChildItem
-    $options = New-DbaDacOption -Type Dacpac -Action Publish
-    Publish-DbaDacPackage -SqlInstance localhost -sqlcredential $script:appvSqlCredential -Database DB1 -DacOption $options -Path "$($ENV:GITHUB_WORKSPACE)\all1.dacpac"
+# call sqlpackage.exe to deploy my db schema using my dacpac
