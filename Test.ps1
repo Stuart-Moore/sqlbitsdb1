@@ -14,14 +14,12 @@
     Write-Host "Install dss"
     set-location .\dbaSecurityScan
     import-module .\dbaSecurityScan.psd1
+    Set-Location ..
 
-    $script:appvPassword = ConvertTo-SecureString 'P@ssw0rdl!ng' -AsPlainText -Force
-    $script:appvSqlCredential = New-Object System.Management.Automation.PSCredential ('sa', $script:appvPassword)
-    Write-Host "Install DacPac"
-    Write-Host "Where - $($ENV:GITHUB_WORKSPACE)"
-    Write-host "full path $($ENV:GITHUB_WORKSPACE)\all1.dacpac"
-    $tf = Test-path "$($ENV:GITHUB_WORKSPACE)\all1.dacpac"
-    write-Host "path test - $tf"
-    Set-Location $ENV:GITHUB_WORKSPACE
-    Get-ChildItem
-# call sqlpackage.exe to deploy my db schema using my dacpac
+
+    $sqlUser = 'sa'
+    $sqlPasswd = ConvertTo-SecureString 'P@ssw0rdl!ng' -AsPlainText -Force
+    $sqlCred = New-Object System.Management.Automation.PSCredential ($sqlUser, $sqlPasswd)
+    $config = Get-Content ./all1.json -raw | ConvertFrom-Json
+    Invoke-DssTest -sqlinstance localhost\sql2019 -sqlcredential $sqlCred -config $config -database all1
+

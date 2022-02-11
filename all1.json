@@ -1,0 +1,317 @@
+{
+  "policy": [
+    {
+      "Name": "AllUsersMemberOfRole",
+      "Description": "Description: Ensures that all users are a member of a role ",
+      "Reason": "Reason: Better control of user data access if only allowed via views or stored procedures",
+      "Enabled": false
+    },
+    {
+      "Name": "NoSqlLogins",
+      "Description": "Description: Policy ensures that no login apart from sa is a SQL login",
+      "Reason": "Reason: Want all user managed via ADS/windows",
+      "Enabled": false
+    },
+    {
+      "Name": "NoUserPermissions",
+      "Description": "Description: Policy ensures that no user is granted direct permissions to any of the base tables in the database",
+      "Reason": "Reason: Make sure all users are members of a db role ",
+      "Enabled": false
+    }
+  ],
+  "config": {
+    "SystemObjects": false,
+    "Generated": "2022-02-11T16:10:52.17072+00:00",
+    "Database": "all1",
+    "SqlInstance": "localhost:1401"
+  },
+  "roles": [
+    {
+      "rolename": "db_accessadmin",
+      "owner": "dbo",
+      "members": null,
+      "permissions": null
+    },
+    {
+      "rolename": "db_backupoperator",
+      "owner": "dbo",
+      "members": null,
+      "permissions": null
+    },
+    {
+      "rolename": "db_datareader",
+      "owner": "dbo",
+      "members": [
+        {
+          "UserName": "testuser"
+        },
+        {
+          "UserName": "readonly"
+        }
+      ],
+      "permissions": null
+    },
+    {
+      "rolename": "db_datawriter",
+      "owner": "dbo",
+      "members": {
+        "UserName": "testuser"
+      },
+      "permissions": null
+    },
+    {
+      "rolename": "db_ddladmin",
+      "owner": "dbo",
+      "members": null,
+      "permissions": null
+    },
+    {
+      "rolename": "db_denydatareader",
+      "owner": "dbo",
+      "members": null,
+      "permissions": null
+    },
+    {
+      "rolename": "db_denydatawriter",
+      "owner": "dbo",
+      "members": null,
+      "permissions": null
+    },
+    {
+      "rolename": "db_owner",
+      "owner": "dbo",
+      "members": null,
+      "permissions": null
+    },
+    {
+      "rolename": "db_securityadmin",
+      "owner": "dbo",
+      "members": null,
+      "permissions": null
+    },
+    {
+      "rolename": "PesterTest",
+      "owner": "dbo",
+      "members": null,
+      "permissions": null
+    },
+    {
+      "rolename": "PesterTest2",
+      "owner": "dbo",
+      "members": null,
+      "permissions": null
+    },
+    {
+      "rolename": "public",
+      "owner": "dbo",
+      "members": null,
+      "permissions": [
+        {
+          "Permission": "VIEW ANY COLUMN ENCRYPTION KEY DEFINITION",
+          "Securable": "all1",
+          "Grantee": "public",
+          "SchemaOwner": "sa"
+        },
+        {
+          "Permission": "VIEW ANY COLUMN MASTER KEY DEFINITION",
+          "Securable": "all1",
+          "Grantee": "public",
+          "SchemaOwner": "sa"
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "dbo",
+      "permissions": {
+        "SchemaOwner": "sa",
+        "Securable": "all1",
+        "Permission": "CONNECT",
+        "RoleSecurableClass": "DATABASE"
+      },
+      "roles": "db_owner"
+    },
+    {
+      "username": "guest",
+      "permissions": null,
+      "roles": null
+    },
+    {
+      "username": "INFORMATION_SCHEMA",
+      "permissions": null,
+      "roles": null
+    },
+    {
+      "username": "readonly",
+      "permissions": {
+        "SchemaOwner": "sa",
+        "Securable": "all1",
+        "Permission": "CONNECT",
+        "RoleSecurableClass": "DATABASE"
+      },
+      "roles": "db_datareader"
+    },
+    {
+      "username": "schemaread",
+      "permissions": [
+        {
+          "SchemaOwner": "sa",
+          "Securable": "all1",
+          "Permission": "CONNECT",
+          "RoleSecurableClass": "DATABASE"
+        },
+        {
+          "SchemaOwner": "readonly",
+          "Securable": "testing",
+          "Permission": "SELECT",
+          "RoleSecurableClass": "SCHEMA"
+        }
+      ],
+      "roles": null
+    },
+    {
+      "username": "sys",
+      "permissions": null,
+      "roles": null
+    },
+    {
+      "username": "testuser",
+      "permissions": [
+        {
+          "SchemaOwner": "sa",
+          "Securable": "all1",
+          "Permission": "CONNECT",
+          "RoleSecurableClass": "DATABASE"
+        },
+        {
+          "SchemaOwner": "dbo",
+          "Securable": "sp_perms",
+          "Permission": "ALTER",
+          "RoleSecurableClass": "SQL_STORED_PROCEDURE"
+        }
+      ],
+      "roles": [
+        "db_datareader",
+        "db_datawriter"
+      ]
+    }
+  ],
+  "schemas": [
+    {
+      "schemaName": "dbo",
+      "owner": "dbo",
+      "objects": [
+        {
+          "owner": "dbo",
+          "object": "sp_perms",
+          "type_desc": "SQL_STORED_PROCEDURE",
+          "is_ms_shipped": false
+        },
+        {
+          "owner": "dbo",
+          "object": "vw_select",
+          "type_desc": "VIEW",
+          "is_ms_shipped": false
+        }
+      ],
+      "permissions": null
+    },
+    {
+      "schemaName": "guest",
+      "owner": "guest",
+      "objects": null,
+      "permissions": null
+    },
+    {
+      "schemaName": "INFORMATION_SCHEMA",
+      "owner": "INFORMATION_SCHEMA",
+      "objects": null,
+      "permissions": null
+    },
+    {
+      "schemaName": "sys",
+      "owner": "sys",
+      "objects": null,
+      "permissions": null
+    },
+    {
+      "schemaName": "testing",
+      "owner": "readonly",
+      "objects": null,
+      "permissions": {
+        "permission": "SELECT",
+        "grantee": "schemaread"
+      }
+    },
+    {
+      "schemaName": "db_owner",
+      "owner": "db_owner",
+      "objects": null,
+      "permissions": null
+    },
+    {
+      "schemaName": "db_accessadmin",
+      "owner": "db_accessadmin",
+      "objects": null,
+      "permissions": null
+    },
+    {
+      "schemaName": "db_securityadmin",
+      "owner": "db_securityadmin",
+      "objects": null,
+      "permissions": null
+    },
+    {
+      "schemaName": "db_ddladmin",
+      "owner": "db_ddladmin",
+      "objects": null,
+      "permissions": null
+    },
+    {
+      "schemaName": "db_backupoperator",
+      "owner": "db_backupoperator",
+      "objects": null,
+      "permissions": null
+    },
+    {
+      "schemaName": "db_datareader",
+      "owner": "db_datareader",
+      "objects": null,
+      "permissions": null
+    },
+    {
+      "schemaName": "db_datawriter",
+      "owner": "db_datawriter",
+      "objects": null,
+      "permissions": null
+    },
+    {
+      "schemaName": "db_denydatareader",
+      "owner": "db_denydatareader",
+      "objects": null,
+      "permissions": null
+    },
+    {
+      "schemaName": "db_denydatawriter",
+      "owner": "db_denydatawriter",
+      "objects": null,
+      "permissions": null
+    }
+  ],
+  "objects": [
+    {
+      "object": "vw_select",
+      "schema": "dbo",
+      "permissions": null
+    },
+    {
+      "object": "sp_perms",
+      "schema": "dbo",
+      "permissions": {
+        "Grantee": "testuser",
+        "Permission": "ALTER"
+      }
+    }
+  ]
+}
