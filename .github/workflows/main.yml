@@ -46,7 +46,7 @@ jobs:
     - name: Run a multi-line script
       run : |
         cd $ENV:GITHUB_WORKSPACE
-                "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\150\sqlpackage.exe" /Action:Publish /SourceFile:"Database.dacpac" /TargetServerName:localhost /TargetDatabaseName: "all1" /TargetUser:"sa" /TargetPassword:"P@ssw0rdl!ng" /p:BlockOnPossibleDataLoss=False
+        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\150\sqlpackage.exe" /Action:Publish /SourceFile:"Database.dacpac" /TargetServerName:localhost /TargetDatabaseName: "all1" /TargetUser:"sa" /TargetPassword:"P@ssw0rdl!ng" /p:BlockOnPossibleDataLoss=False
         powershell -F ./Test.ps1
 
         
