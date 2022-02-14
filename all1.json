@@ -35,7 +35,11 @@
     {
       "rolename": "db_backupoperator",
       "owner": "dbo",
-      "members": null,
+      "members": [
+          {
+            "UserName": "readonly"
+          }
+      ],
       "permissions": null
     },
     {
