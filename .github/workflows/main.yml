@@ -49,14 +49,18 @@ jobs:
         & "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\Extensions\\Microsoft\\SQLDB\\DAC\\150\\sqlpackage.exe" 
         /Action:Publish 
         /SourceFile:"all1.dacpac" 
-        /TargetServerName:localhost\sql2019 
+        /TargetServerName:"${{ Secrets.SQLHOST }}" 
         /TargetDatabaseName:"all1" 
-        /TargetUser:"sa" 
-        /TargetPassword:"P@ssw0rdl!ng" 
+        /TargetUser:"${{ Secrets.SQL_USER }}" 
+        /TargetPassword:"${{ Secrets.SQL_PASSWD }}" 
         /p:BlockOnPossibleDataLoss=False
      
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
+      env: 
+        SQLHOST: ${{ Secrets.SQLHOST }}
+        SQL_USER: ${{ Secrets.SQL_USER }}
+        SQL_PASSWD: ${{ Secrets.SQL_PASSWD }}
       run: |
         cd $ENV:GITHUB_WORKSPACE
         powershell -F ./Test.ps1
