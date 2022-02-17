@@ -40,8 +40,8 @@ jobs:
       run: powershell -c 'Get-Service | Where-Object {$_.name -like ''*MSSQLSERVER*'' -and $_.status -ne ''Running''} | start-service'
     
     # Install SQL Express
-    - name: Install SQL Express
-      run: powershell -F ./Build/Install-SqlExpress.ps1
+    # - name: Install SQL Express
+    #   run: powershell -F ./Build/Install-SqlExpress.ps1
 
     # install dacpac
     - name: Install dacpac
