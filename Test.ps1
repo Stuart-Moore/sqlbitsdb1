@@ -22,5 +22,8 @@
     $sqlCred = New-Object System.Management.Automation.PSCredential ($sqluser, $sqlPasswd)
     # $sqlCred = New-Object System.Management.Automation.PSCredential ($env:SQL_USER, $env:SQL_PASSWD)
     $config = Get-Content ../all1.json -raw | ConvertFrom-Json
-    Invoke-DssTest -sqlinstance $env:SQLHOST -sqlcredential $sqlCred -config $config -database all1
+    $results = Invoke-DssTest -sqlinstance $env:SQLHOST -sqlcredential $sqlCred -config $config -database all1
 
+    if ($results.failedTestCount -gt 0) {
+        Write-Error "Failed Tests!"
+    }
