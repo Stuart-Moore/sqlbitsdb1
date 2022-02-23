@@ -21,6 +21,6 @@
     $sqlPasswd = ConvertTo-SecureString 'P@ssw0rdl!ng' -AsPlainText -Force
     $sqlCred = New-Object System.Management.Automation.PSCredential ($sqluser, $sqlPasswd)
     # $sqlCred = New-Object System.Management.Automation.PSCredential ($env:SQL_USER, $env:SQL_PASSWD)
-    $config = Get-Content ./all1.json -raw | ConvertFrom-Json
+    $config = Get-Content ../all1.json -raw | ConvertFrom-Json
     Invoke-DssTest -sqlinstance $env:SQLHOST -sqlcredential $sqlCred -config $config -database all1
 
