@@ -24,6 +24,4 @@
     $config = Get-Content ../all1.json -raw | ConvertFrom-Json
     $results = Invoke-DssTest -sqlinstance $env:SQLHOST -sqlcredential $sqlCred -config $config -database all1
 
-    if ($results.failedTestCount -gt 0) {
-        Write-Error "Failed Tests!"
-    }
+    $results.failedTestCount | Should -Be 0 -Because 'There should be no failing test'
