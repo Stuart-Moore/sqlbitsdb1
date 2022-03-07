@@ -26,7 +26,7 @@
     $server.Databases['master'].ExecuteNonQuery($query)
 
     # $sqlCred = New-Object System.Management.Automation.PSCredential ($env:SQL_USER, $env:SQL_PASSWD)
-    $config = Get-Content ../all1.json -raw | ConvertFrom-Json
+    $config = Get-Content ../roles1.json -raw | ConvertFrom-Json
     $results = Invoke-DssTest -sqlinstance $env:SQLHOST -sqlcredential $sqlCred -config $config -database roles1
 
     $results.failedTestCount | Should -Be 0 -Because 'There should be no failing test'
