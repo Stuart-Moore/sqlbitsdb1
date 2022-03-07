@@ -27,7 +27,7 @@
     $sqlCred = New-Object System.Management.Automation.PSCredential ($sqluser, $sqlPasswd)
 
     $server = Connect-DbaInstance -SqlInstance $env:SQLHOST -SqlCredential $sqlcred
-    $query = Get-Content "$ENV:GITHUB_WORKSPACE\roles1.sql" -raw 
+    $query = Get-Content "..\roles1.sql" -raw 
     $server.Databases['master'].ExecuteNonQuery($query)
 
     # $sqlCred = New-Object System.Management.Automation.PSCredential ($env:SQL_USER, $env:SQL_PASSWD)
