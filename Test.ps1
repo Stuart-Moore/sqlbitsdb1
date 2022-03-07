@@ -22,9 +22,9 @@
     $sqlCred = New-Object System.Management.Automation.PSCredential ($env:SQL_USER, $sqlPasswd)
 
     $server = Connect-DbaInstance -SqlInstance $env:SQLHOST -SqlCredential $sqlcred
-    $query = Get-Content "$ENV:GITHUB_WORKSPACE\roles1.sql" -raw
+    $query = Get-Content "$ENV:GITHUB_WORKSPACE\roles1.sql" -raw 
     $server.Databases['master'].ExecuteNonQuery($query)
-    
+
     # $sqlCred = New-Object System.Management.Automation.PSCredential ($env:SQL_USER, $env:SQL_PASSWD)
     $config = Get-Content ../all1.json -raw | ConvertFrom-Json
     $results = Invoke-DssTest -sqlinstance $env:SQLHOST -sqlcredential $sqlCred -config $config -database roles1
