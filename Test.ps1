@@ -17,9 +17,14 @@
     # Set-Location ..
 
 
-    $sqlUser = 'sqltest'
-    $sqlPasswd = ConvertTo-SecureString $env:SQL_PASSWD -AsPlainText -Force
-    $sqlCred = New-Object System.Management.Automation.PSCredential ($env:SQL_USER, $sqlPasswd)
+    # $sqlUser = 'sqltest'
+    # $sqlPasswd = ConvertTo-SecureString $env:SQL_PASSWD -AsPlainText -Force
+    # $sqlCred = New-Object System.Management.Automation.PSCredential ($env:SQL_USER, $sqlPasswd)
+
+
+      $sqlUser = 'sqltest'
+    $sqlPasswd = ConvertTo-SecureString 'P@ssw0rdl!ng' -AsPlainText -Force
+    $sqlCred = New-Object System.Management.Automation.PSCredential ($sqluser, $sqlPasswd)
 
     $server = Connect-DbaInstance -SqlInstance $env:SQLHOST -SqlCredential $sqlcred
     $query = Get-Content "$ENV:GITHUB_WORKSPACE\roles1.sql" -raw 
