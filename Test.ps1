@@ -22,11 +22,11 @@
     # $sqlCred = New-Object System.Management.Automation.PSCredential ($env:SQL_USER, $sqlPasswd)
 
 
-      $sqlUser = 'sqltest'
+    $sqlUser = 'sqltest'
     $sqlPasswd = ConvertTo-SecureString 'P@ssw0rdl!ng' -AsPlainText -Force
     $sqlCred = New-Object System.Management.Automation.PSCredential ($sqluser, $sqlPasswd)
 
-    $server = Connect-DbaInstance -SqlInstance $env:SQLHOST -SqlCredential $sqlcred
+    $server = Connect-DbaInstance -SqlInstance $env:SQLHOST -SqlCredential $sqlcred -verbose
     $query = Get-Content "..\all1.sql" -raw 
     $server.Databases['master'].ExecuteNonQuery($query)
 
