@@ -14,8 +14,6 @@ go
 use roles1
 go
 
-CREATE user bad without login;
-
 create user alice without login;
 GO
 
