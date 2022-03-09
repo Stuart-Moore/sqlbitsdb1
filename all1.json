@@ -21,9 +21,9 @@
   ],
   "config": {
     "SystemObjects": false,
-    "Generated": "2022-02-11T16:10:52.17072+00:00",
-    "Database": "all1",
-    "SqlInstance": "localhost:1401"
+    "Generated": "2022-03-08T15:14:15.9707642+00:00",
+    "Database": "roles1",
+    "SqlInstance": "localhost"
   },
   "roles": [
     {
@@ -35,31 +35,20 @@
     {
       "rolename": "db_backupoperator",
       "owner": "dbo",
-      "members": [
-          {
-            "UserName": "readonly"
-          }
-      ],
+      "members": null,
       "permissions": null
     },
     {
       "rolename": "db_datareader",
       "owner": "dbo",
-      "members": [
-        {
-          "UserName": "testuser"
-        },
-        {
-          "UserName": "readonly"
-        }
-      ],
+      "members": null,
       "permissions": null
     },
     {
       "rolename": "db_datawriter",
       "owner": "dbo",
       "members": {
-        "UserName": "testuser"
+        "UserName": "carol"
       },
       "permissions": null
     },
@@ -94,43 +83,85 @@
       "permissions": null
     },
     {
-      "rolename": "PesterTest",
-      "owner": "dbo",
-      "members": null,
-      "permissions": null
-    },
-    {
-      "rolename": "PesterTest2",
-      "owner": "dbo",
-      "members": null,
-      "permissions": null
-    },
-    {
       "rolename": "public",
       "owner": "dbo",
       "members": null,
       "permissions": [
         {
           "Permission": "VIEW ANY COLUMN ENCRYPTION KEY DEFINITION",
-          "Securable": "all1",
+          "Securable": "roles1",
           "Grantee": "public",
-          "SchemaOwner": "sa"
+          "SchemaOwner": "sqlbits22\\sqlbits"
         },
         {
           "Permission": "VIEW ANY COLUMN MASTER KEY DEFINITION",
-          "Securable": "all1",
+          "Securable": "roles1",
           "Grantee": "public",
-          "SchemaOwner": "sa"
+          "SchemaOwner": "sqlbits22\\sqlbits"
         }
       ]
+    },
+    {
+      "rolename": "removerole",
+      "owner": "dbo",
+      "members": null,
+      "permissions": null
+    },
+    {
+      "rolename": "userrole",
+      "owner": "dbo",
+      "members": [
+        {
+          "UserName": "alice"
+        },
+        {
+          "UserName": "bob"
+        }
+      ],
+      "permissions": {
+        "Permission": "EXECUTE",
+        "Securable": "sp_test",
+        "Grantee": "userrole",
+        "SchemaOwner": "dbo"
+      }
     }
   ],
   "users": [
     {
+      "username": "alice",
+      "permissions": {
+        "SchemaOwner": "sqlbits22\\sqlbits",
+        "Securable": "roles1",
+        "Permission": "CONNECT",
+        "RoleSecurableClass": "DATABASE"
+      },
+      "roles": "userrole"
+    },
+    {
+      "username": "bob",
+      "permissions": {
+        "SchemaOwner": "sqlbits22\\sqlbits",
+        "Securable": "roles1",
+        "Permission": "CONNECT",
+        "RoleSecurableClass": "DATABASE"
+      },
+      "roles": "userrole"
+    },
+    {
+      "username": "carol",
+      "permissions": {
+        "SchemaOwner": "sqlbits22\\sqlbits",
+        "Securable": "roles1",
+        "Permission": "CONNECT",
+        "RoleSecurableClass": "DATABASE"
+      },
+      "roles": "db_datawriter"
+    },
+    {
       "username": "dbo",
       "permissions": {
-        "SchemaOwner": "sa",
-        "Securable": "all1",
+        "SchemaOwner": "sqlbits22\\sqlbits",
+        "Securable": "roles1",
         "Permission": "CONNECT",
         "RoleSecurableClass": "DATABASE"
       },
@@ -147,78 +178,21 @@
       "roles": null
     },
     {
-      "username": "readonly",
-      "permissions": {
-        "SchemaOwner": "sa",
-        "Securable": "all1",
-        "Permission": "CONNECT",
-        "RoleSecurableClass": "DATABASE"
-      },
-      "roles": "db_datareader"
-    },
-    {
-      "username": "schemaread",
-      "permissions": [
-        {
-          "SchemaOwner": "sa",
-          "Securable": "all1",
-          "Permission": "CONNECT",
-          "RoleSecurableClass": "DATABASE"
-        },
-        {
-          "SchemaOwner": "readonly",
-          "Securable": "testing",
-          "Permission": "SELECT",
-          "RoleSecurableClass": "SCHEMA"
-        }
-      ],
-      "roles": null
-    },
-    {
       "username": "sys",
       "permissions": null,
       "roles": null
-    },
-    {
-      "username": "testuser",
-      "permissions": [
-        {
-          "SchemaOwner": "sa",
-          "Securable": "all1",
-          "Permission": "CONNECT",
-          "RoleSecurableClass": "DATABASE"
-        },
-        {
-          "SchemaOwner": "dbo",
-          "Securable": "sp_perms",
-          "Permission": "ALTER",
-          "RoleSecurableClass": "SQL_STORED_PROCEDURE"
-        }
-      ],
-      "roles": [
-        "db_datareader",
-        "db_datawriter"
-      ]
     }
   ],
   "schemas": [
     {
       "schemaName": "dbo",
       "owner": "dbo",
-      "objects": [
-        {
-          "owner": "dbo",
-          "object": "sp_perms",
-          "type_desc": "SQL_STORED_PROCEDURE",
-          "is_ms_shipped": false
-        },
-        {
-          "owner": "dbo",
-          "object": "vw_select",
-          "type_desc": "VIEW",
-          "is_ms_shipped": false
-        }
-      ],
+      "objects": {
+        "owner": "dbo",
+        "object": "sp_test",
+        "type_desc": "SQL_STORED_PROCEDURE",
+        "is_ms_shipped": false
+      },
       "permissions": null
     },
     {
@@ -238,15 +212,6 @@
       "owner": "sys",
       "objects": null,
       "permissions": null
-    },
-    {
-      "schemaName": "testing",
-      "owner": "readonly",
-      "objects": null,
-      "permissions": {
-        "permission": "SELECT",
-        "grantee": "schemaread"
-      }
     },
     {
       "schemaName": "db_owner",
@@ -303,19 +268,18 @@
       "permissions": null
     }
   ],
-  "objects": [
-    {
-      "object": "vw_select",
-      "schema": "dbo",
-      "permissions": null
-    },
-    {
-      "object": "sp_perms",
-      "schema": "dbo",
-      "permissions": {
-        "Grantee": "testuser",
-        "Permission": "ALTER"
+  "objects": {
+    "object": "sp_test",
+    "schema": "dbo",
+    "permissions": [
+      {
+        "Grantee": "userrole",
+        "Permission": "EXECUTE"
+      },
+      {
+        "Grantee": "userrole",
+        "Permission": "EXECUTE"
       }
-    }
-  ]
+    ]
+  }
 }
