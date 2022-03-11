@@ -20,8 +20,8 @@ GO
 create user bob without login;
 GO
 
--- create user bad without login;
--- go
+create user bad without login;
+go
 
 create user carol without login;
 GO
