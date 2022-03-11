@@ -1,5 +1,5 @@
     Write-Host "Installing Pester" -ForegroundColor Cyan
-    Install-Module Pester -Force -SkipPublisherCheck -MaximumVersion 4.9.0
+    Install-Module Pester -Force -SkipPublisherCheck -MinimumVersion 4.9.0 -MaximumVersion 4.9.0
     Import-Module Pester
     Write-Host "Installing PSFramework" -ForegroundColor Cyan
     Install-Module PSFramework -Force -SkipPublisherCheck
