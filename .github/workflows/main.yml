@@ -63,6 +63,6 @@ jobs:
         SQL_PASSWD: ${{ Secrets.SQL_PASSWD }}
       run: |
         cd $ENV:GITHUB_WORKSPACE
-        powershell -F ./Test.ps1
+        pwsh -F ./Test.ps1
 
         
