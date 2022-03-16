@@ -5,14 +5,14 @@
     Install-Module PSFramework -Force -SkipPublisherCheck
     Import-Module PSFramework
     Write-Host "Installing dbatools" -ForegroundColor Cyan
-    # Install-Module dbatools -Force -SkipPublisherCheck -MaximumVersion 1.1.73
-    # Import-Module dbatools
-    new-item .\dbatools -ItemType Directory
-    git clone -b GetDbaUserPermission_refactor2 https://github.com/dataplat/dbatools.git
-    set-location .\dbatools
-    import-module .\dbatools.psm1 -Force
+    Install-Module dbatools -Force -SkipPublisherCheck -MaximumVersion 1.1.73
+    Import-Module dbatools
+    # new-item .\dbatools -ItemType Directory
+    # git clone -b GetDbaUserPermission_refactor2 https://github.com/dataplat/dbatools.git
+    # set-location .\dbatools
+    # import-module .\dbatools.psm1 -Force
 
-    set-location ..\
+    # set-location ..\
 
     New-Item .\dbaSecurityScan -ItemType Directory
     git clone https://github.com/dataplat/dbasecurityscan.git .\dbaSecurityScan
